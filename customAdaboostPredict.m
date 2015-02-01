@@ -31,7 +31,7 @@ function [labelClass]=getLabelClass(model)
 %输出：  model中包含的类别的vector
 
 %以下针对libsvm 中训练的svm model
-labelClass=model.Label;
-
+%labelClass=model.Label;
+labelClass=model.ClassNames;
 end
 

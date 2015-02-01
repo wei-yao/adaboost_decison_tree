@@ -3,5 +3,6 @@ function [ model ] = customBaseTrain( measures,labels )
 %  mesures :属性矩阵，labels  标号
 % 输出  ：model 训练结果模型
 %以下是svm实现的基分类器.
-model = svmtrain(labels,measures);
+%model = svmtrain(labels,measures);
+model=fitctree(measures,labels);
 end
