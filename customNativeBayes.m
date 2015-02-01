@@ -16,3 +16,14 @@ end
 accuracy=accuracy/round;
 end
 
+
+function [labelClass]=getLabelClass(model)
+%从model 获取所有类别
+%输入： model.
+%输出：  包含所有类别标号的vector
+
+%以下是针对svm的.
+
+
+end
+
