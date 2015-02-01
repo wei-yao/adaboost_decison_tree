@@ -5,7 +5,7 @@ accuracy=0;
 round=100;
 %运行round 轮，每轮随机取训练集和测试集 ，最后结果取平均.
 for i=1:round
-[trainData,trainLabel,testData,testLabel]=randomSelectData(inputData,150);
+[trainData,trainLabel,testData,testLabel]=randomSelectData(inputData,850);
 tc = fitctree(trainData,trainLabel);
 predictLabel=predict(tc,testData);
 [testNum,temp]=size(testData);
