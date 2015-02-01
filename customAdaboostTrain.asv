@@ -39,10 +39,10 @@ signs(predictLabels==labels)=-1;
 oldWeight=weight;
 weight=weight.*exp(alpha.*signs);
 weight=weight/sum(weight);
-%test=sum((oldWeight>weight)-(predictLabels==labels));
-%if(test>0)
-%c=1;
-%end
+test=sum((oldWeight<weight)-(predictLabels~=labels));
+if(test>0)
+c=1;
+end
 end
 end
 
