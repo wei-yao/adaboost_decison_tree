@@ -1,7 +1,8 @@
 function [ trainData,trainLabel,testData,testLabel ] = getCrossSample( input,iterations,total )
 %用交叉验证的方法抽样
 %  输入：input 输入文件名  iterations 当前的轮数 范围是1到total ，total 总轮数.
-[measures,labels]=getData(input);
+% [measures,labels]=getData(input);
+load(input);
 dataSize=size(measures,1);
 %每次抽取的样本大小.
 sampleSize=floor(dataSize/total);
