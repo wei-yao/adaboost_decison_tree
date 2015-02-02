@@ -11,12 +11,13 @@ function [ accuracy ] = customSvmClassify( inputData)
 %test_label = a([41:50 91:100 141:150],end);
 %test_data = attrib([41:50 91:100 141:150],1:end);
 accuracy=0;
-round=100;
+round=10;
 %运行round 轮，每轮随机取训练集和测试集 ，最后结果取平均.
 for i=1:round
-[train_data,train_label,test_data,test_label]=randomSelectData(inputData,100);
-model = svmtrain(train_label,train_data);
-[predict,ac,pp] = svmpredict(test_label,test_data,model);
+%[train_data,trainLabel,test_data,test_label]=randomSelectData(inputData,100);
+[trainData,trainLabel,testData,testLabel]=getCrossSample(inputData,i,round);
+model = svmtrain(trainLabel,trainData);
+[predict,ac,pp] = svmpredict(testLabel,testData,model);
 accuracy =accuracy+ac(1,1);
 end
 accuracy=accuracy/round;
