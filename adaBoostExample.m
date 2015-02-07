@@ -1,6 +1,6 @@
 function [ accuracy ] = adaBoostExample( data )
-%运用iris数据集测试 adaboost方法.
-%   输入：data　包含有数据的文件名．
+%用adaboost 方法训练模型，并用k折交叉验证的方法检验.
+%   输入：data　包含有数据的文件名（.mat文件）．
 %  输出： accuracy 测试集上的准确率.
 accuracy=0;
 round=10;

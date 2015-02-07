@@ -19,17 +19,17 @@ for i=1:round
 %用基分类器训练并预测.
 trainModel=customBaseTrain(sampleMeasures,sampleLabels);
 predictLabels=customBasePredict(measures,trainModel);
-%非加权的错误率.
+%bujiaqi
 originErrorRate=sum(predictLabels~=labels)/sampleSize;
 errorRate=sum(weight(predictLabels~=labels,:));
-%如果错误率大于1/2 就重新分配权值,并继续循环.
+%如果错误率大于1/2 就继续循环.
 if errorRate<=0.5
    break; 
 else
    weight=ones(sampleSize,1)/sampleSize; 
 end
  end
- %errorRate 为0时分母使用eps
+ %防止errorRate 为0
 alpha=1/2*log((1-errorRate)/max(errorRate,eps));
 models(i).alpha=alpha;
 models(i).model=trainModel;
@@ -38,8 +38,13 @@ models(i).originEE=originErrorRate;
 %更新样本weight
 signs=ones(sampleSize,1);
 signs(predictLabels==labels)=-1;
+oldWeight=weight;
 weight=weight.*exp(alpha.*signs);
 weight=weight/sum(weight);
+%test=sum((oldWeight>weight)-(predictLabels==labels));
+%if(test>0)
+%c=1;
+%end
 end
 end
 

@@ -1,6 +1,6 @@
 function [ labels ] = customAdaboostPredict( models,measures )
 %用adaboost方法预测属性.
-% 输入： models： daboost的训练结果,measures: 测试数据的属性.
+% 输入： models： adaBoost的训练模型 (customAdaboostTrain 函数的返回值),measures: 测试数据的属性.
 % 输出：  labels:预测的分类.
 alphas=[models.alpha];
 labelClass=getLabelClass(models(1).model);

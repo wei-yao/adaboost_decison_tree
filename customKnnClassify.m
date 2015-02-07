@@ -4,9 +4,10 @@ function [ accuracy ] = customKnnClassify( inputData )
 %input是输入文件名.
 accuracy=0;
 round=10;
-%运行round 轮，每轮随机取训练集和测试集 ，最后结果取平均.
+%运行round 轮，采取k折交叉验证方法
 for i=1:round
-[trainData,trainLabel,testData,testLabel]=randomSelectData(inputData,100);
+% [trainData,trainLabel,testData,testLabel]=randomSelectData(inputData,100);
+[trainData,trainLabel,testData,testLabel]=getCrossSample(inputData,i,round);
 mdl = fitcknn(trainData,trainLabel,'NumNeighbors',5,'Standardize',1);
 [label,score,cost] = predict(mdl,testData);
 testNum=size(testData,1);
