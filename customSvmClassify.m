@@ -1,6 +1,7 @@
 function [ accuracy ] = customSvmClassify( inputData)
 %用支持向量机分类 使用了Chih-Chung Chang and Chih-Jen Lin 的libsvm库
 %inputData 为 输入文件名.
+%返回值 accuracy 精确度.
 %魏尧  2015-01-30
 
 
@@ -12,7 +13,7 @@ for i=1:round
 [trainData,trainLabel,testData,testLabel]=getCrossSample(inputData,i,round);
 model = svmtrain(trainLabel,trainData);
 [predict,ac,pp] = svmpredict(testLabel,testData,model);
-accuracy =accuracy+ac(1,1);
+accuracy =accuracy+ac(1,1)/100;
 end
 accuracy=accuracy/round;
 end
